@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: links
+#
+#  id         :integer          not null, primary key
+#  volume_id  :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  url        :string(255)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  volume_id: 1
+
+two:
+  volume_id: 1

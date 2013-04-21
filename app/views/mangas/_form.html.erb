@@ -1,0 +1,43 @@
+<%= simple_form_for(@manga, :html => { :class => 'form-horizontal' }) do |f| %>
+	<% if @manga.errors.any? %>
+		<div id="error_explanation" class="controls">
+			<h2><%= pluralize(@manga.errors.count, "erreur") %> empêchent le formulaire d'être soumis :</h2>
+
+			<ul>
+				<% @manga.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<%= f.input :title, label: "Titre", :input_html => { :maxlength => 50 } %>
+	<%= f.input :plot, label: "Résumé", as: :text, :placeholder => "Entrez le texte ici", :input_html => { :rows => 10, :cols => 20, :class => "wysihtml5"} %>
+
+	<table style="width: 100%;">
+		<td>
+			<%= f.input :release, label: "Date de sortie", :as => :datepicker %>
+			<%= f.input :picture, label: "Image de présentation" %>
+			<%= f.association :author, include_blank: false, order: Author.name %>
+			<%= f.association :genre, include_blank: false, order: Genre.name %>
+		</td>
+		<td>
+			<div style="text-align: left;">
+				<% if @manga.new_record? %>
+					<img src="" class="manga_picture_preview">
+				<% else %>
+					<%= image_tag @manga.picture, class: "manga_picture" %>
+				<% end %>
+			</div>
+		</td>
+	</table>
+
+	<div class="controls">
+		<%= f.button :submit, @manga.new_record? ? "Enregistrer le manga" : "Éditer le manga", class: 'btn-primary' %>
+		<% if @manga.new_record? %>
+			<%= link_to 'Annuler', mangas_path %>
+		<% else %>
+			<%= link_to 'Retour', mangas_path %>
+		<% end %>
+	</div>
+<% end %>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Samazama na Koto - 様々な事</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+	<div class="header"></div>
+</head>
+
+<body>
+<div class="container">
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="brand" href="#">Samazama na Koto</a>
+				<ul class="nav">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100">Ecchi<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<% Manga.ecchi_manga.each do |ecchi| %>
+								<li><%= link_to ecchi.title, manga_path(ecchi) %></li>
+							<% end %>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100">Hentai<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<% Manga.hentai_manga.each do |hentai| %>
+								<li><%= link_to hentai.title, manga_path(hentai) %></li>
+							<% end %>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100">Yuri<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<% Manga.yuri_manga.each do |yuri| %>
+								<li><%= link_to yuri.title, manga_path(yuri) %></li>
+							<% end %>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<%= link_to "L'équipe", posts_path %>
+					</li>
+					<li class="dropdown">
+					<%= link_to "Le forum", posts_path %>
+					</li>
+				</ul>
+				<ul class="nav pull-right">
+					<li class="dropdown dropdown-admin">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="100">Admin<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<% if current_user && current_user.admin? %>
+								<li><%= link_to '<i class="icon-list-alt"></i> Nouvel article'.html_safe, new_post_path %></li>
+								<li><%= link_to '<i class="icon-book"></i> Nouveau manga'.html_safe, new_manga_path %></li>
+								<li><%= link_to '<i class="icon-off"></i> Se déconnecter'.html_safe, :logout, confirm: "Êtes-vous sûr de vouloir vous déconnecter ?" %></li>
+							<% else %>
+								<li><%= link_to '<i class="icon-user"></i> Se connecter'.html_safe, new_admin_url %></li>
+							<% end %>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="layout">
+		<% flash.each do |key, value| %>
+				<div class="alert <%= key %>" data-alert="alert">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<%= value %>
+			</div>
+		<% end %>
+		<%= yield %>
+	</div>
+	<br>
+</div>
+
+</body>
+</html>

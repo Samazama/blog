@@ -1,0 +1,41 @@
+<h1><%= @post.title %></h1>
+
+<p>
+  <%= @post.content.html_safe %>
+</p>
+
+<div align="right">
+	<h6>Posté il y a <%= time_ago_in_words @post.created_at %><br>
+		Dernière mise à jour le <%= l(@post.updated_at) %></h6>
+</div>
+
+<hr class="bs-docs-separator">
+
+<h4>Commentaires :</h4>
+
+<%= "Il n'y a actuellement aucun commentaire." if @post.comments.empty? %>
+<% @post.comments.each do |comment| %>
+	<p><%= comment.content %></p>
+	<p>
+		Posté il y a <%= time_ago_in_words comment.created_at %> |
+		<%= link_to 'Effacer le commentaire', [@post, comment], method: :delete,
+								confirm: "Êtes-vous sûr de vouloir effacer le commentaire ?" %>
+	</p>
+	<hr class="bs-docs-separator">
+<% end %>
+
+<%= simple_form_for [@post, @post.comments.build], :html => { :class => 'form-horizontal' } do |f| %>
+	<p><%= f.input :content %></p>
+	<div class="controls">
+		<p><%= f.submit "Poster le commentaire", class: 'btn btn-primary' %></p>
+		<p>
+			<%= link_to t('Edit'), edit_post_path(@post) %>
+			|
+			<%= link_to t('Back'), posts_path %>
+			|
+			<%= link_to t('Delete'), @post, method: :delete,
+									confirm: "Êtes-vous sûr de vouloir effacer l'article ?" %>
+		</p>
+	</div>
+<% end %>
+

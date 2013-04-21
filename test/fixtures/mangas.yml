@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: mangas
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  plot       :text
+#  author_id  :integer
+#  genre_id   :integer
+#  release    :date
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  picture    :string(255)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  plot: MyText
+  author_id: 1
+  genre_id: 1
+  release: 2013-04-21
+
+two:
+  title: MyString
+  plot: MyText
+  author_id: 1
+  genre_id: 1
+  release: 2013-04-21

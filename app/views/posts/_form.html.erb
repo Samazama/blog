@@ -1,0 +1,24 @@
+<%= simple_form_for(@post, :html => { :class => 'form-horizontal' }) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation" class="controls">
+      <h2><%= pluralize(@post.errors.count, "erreur") %> empêchent le formulaire d'être soumis :</h2>
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<%= f.input :title, :input_html => { :maxlength => 50 } %>
+	<%= f.input :content, as: :text, :placeholder => "Entrez le texte ici", :input_html => { :rows => 20, :cols => 20, :class => "wysihtml5"} %>
+
+	<div class="controls">
+		<%= f.button :submit, "Poster l'article", class: 'btn-primary' %>
+		<% if @post.new_record? %>
+			<%= link_to 'Annuler', posts_path %>
+		<% else %>
+			<%= link_to 'Retour', post_path %>
+		<% end %>
+	</div>
+<% end %>
