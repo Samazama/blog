@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" xmlns="http://www.w3.org/1999/html"><%= notice %></p>
 
 <h4>Les news :</h4>
 
@@ -10,16 +10,21 @@
 
 	<h4><%= link_to post.title, post %></h4>
 	<p>
-		Posté il y a <%= time_ago_in_words post.created_at %>, dernière mise à jour le <%= l(post.updated_at) %>
+		Publié il y a <%= time_ago_in_words post.created_at %> par <b><%= post.user.try(:username) %></b>, dernière mise à jour le <%= l(post.updated_at) %>
 	</p>
-	<p>
+	<p style="text-align: justify;">
 		<%= truncate_html(post.content.html_safe, length: 1000) %><br />
 	</p>
+	<% if logged_in? && current_user.admin? %>
 	<div id="admin-post">
 		<%= link_to t('Edit'), edit_post_path(post) %> |
 		<%= link_to t('Destroy'), post, method: :delete, data: { confirm: t('Are you sure?') } %>
 	</div>
-
+	<br>
+	<% end %>
+	<div style="text-align: right;">
+		<%= link_to post.comments.count.to_s + " commentaire(s)", post %>
+	</div>
 	<br />
 <% end %>
 

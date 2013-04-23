@@ -1,11 +1,11 @@
-<h1><%= @post.title %></h1>
+<h3><%= @post.title %></h3>
 
-<p>
+<p style="text-align: justify;">
   <%= @post.content.html_safe %>
 </p>
 
 <div align="right">
-	<h6>Posté il y a <%= time_ago_in_words @post.created_at %><br>
+	<h6>Publié il y a <%= time_ago_in_words @post.created_at %> par <%= @post.user.try(:username) %><br>
 		Dernière mise à jour le <%= l(@post.updated_at) %></h6>
 </div>
 
@@ -28,6 +28,7 @@
 	<p><%= f.input :content %></p>
 	<div class="controls">
 		<p><%= f.submit "Poster le commentaire", class: 'btn btn-primary' %></p>
+		<% if logged_in? && current_user.admin? %>
 		<p>
 			<%= link_to t('Edit'), edit_post_path(@post) %>
 			|
@@ -36,6 +37,7 @@
 			<%= link_to t('Delete'), @post, method: :delete,
 									confirm: "Êtes-vous sûr de vouloir effacer l'article ?" %>
 		</p>
+		<% end %>
 	</div>
 <% end %>
 

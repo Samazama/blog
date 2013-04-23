@@ -13,7 +13,6 @@ class PostsController < ApplicationController
   end
 
   def new
-
     redirect_to root_url and return unless logged_in? && current_user.admin?
     @post = Post.new
 
@@ -29,7 +28,7 @@ class PostsController < ApplicationController
 
   def create
     user_hash = { "user_id" => current_user.id}
-    params[:post].merge user_hash
+    params[:post].merge! user_hash
     @post = Post.new(params[:post])
 
     respond_to do |format|
