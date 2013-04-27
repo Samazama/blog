@@ -24,6 +24,8 @@ class MangasController < ApplicationController
   end
 
   def edit
+    redirect_to root_url and return unless logged_in? && current_user.admin?
+
     @manga = Manga.find(params[:id])
   end
 

@@ -27,6 +27,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 group :development, :test do
   gem 'debugger' # To use debugger
+  gem 'sqlite3'
   gem 'awesome_print'
   gem "better_errors"
   gem "binding_of_caller"
