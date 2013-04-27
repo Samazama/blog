@@ -24,8 +24,10 @@ yuri = Genre.create(name: "Yuri")
 puts "Create author..."
 ##### Author #####
 
-kazuto_okada = Author.create(name: "Kazuto Okada")
+kazuto_okada  = Author.create(name: "Kazuto Okada")
 amazume_ryuta = Author.create(name: "Amazume Ryuta")
+kumoi_takashi = Author.create(name: "Kumoi Takashi")
+fukudahda     = Author.create(name: "Fukudahda")
 
 puts "Create ecchi..."
 ##### Ecchi ######
@@ -41,5 +43,21 @@ toshiue = Manga.create(title: "Toshiue no Hito",
                        author_id: amazume_ryuta.id,
                        picture: "http://i.imgur.com/pFP53uE.png",
                        plot: "Tsutomo, notre héros fait toujours le même rêve : une mystérieuse femme censée vivre dans le village de son enfance devient très entreprenante avec ses parties prénatales… Un jour Tsutomo tombe nez à nez avec une fille qui ressemble comme deux gouttes d’eau à cette femme ! Sauf qu’elle est plus petite et plus âgée… C’est qu’ici que commence Toshiue no Hito, un ecchi bien sympa et drôle !")
+
+puts "Create hentai..."
+##### Hentai ######
+
+strange_heart = Manga.create(title: "Strange Heart",
+                              genre_id: hentai.id,
+                              author_id: kumoi_takashi.id,
+                              picture: "http://i.imgur.com/LbA8kd4.jpg",
+                              plot: "Shûji est un lycéen très proche de sa sœur, jusque là tout va bien. Mais il a le malheur d’attirer les pires catastrophes sur lui : dès qu’un ballon de foot se perd c’est pour sa gueule, dès qu’un objet tombe d’une fenêtre il se le prend… Jusqu’au jour où Karen, une fille au teint mat et étrangement peu loquace, arrive dans sa classe. Elle est comme attirée par lui et réussit à le protéger de son malheur. En échange, Shûji donnera de sa personne pour la remercier (c’est le cas de le dire !)… Ce n’est sans compter sur la venue de la sœur de Karen qui quant à elle est très bavarde et qui lui ressemble comme deux gouttes d’eau ! Gros seins et fétichismes en tout genre seront de la partie !")
+
+honey_blonde = Manga.create(title: "Honey Blonde",
+                            genre_id: hentai.id,
+                            author_id: fukudahda.id,
+                            picture: "http://i.imgur.com/G7raua2.jpg",
+                            plot: "Erina est d’origine étrangère mais vit au Japon depuis qu’elle est toute petite. Elle est blonde et a des gros seins, ce qui ne passe pas inaperçu… Sa mère est souvent en voyage d’affaires et la laisse s’occuper seule de sa vie. Elle s’occupe avec Masaki, son ami d’enfance… Honey Blonde relate leur vie sexuelle très mouvementée !")
+
 
 puts "Ok!"
