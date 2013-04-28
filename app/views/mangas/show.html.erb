@@ -9,7 +9,7 @@
 </div>
 
 <div style="text-align: center;">
-	<%= image_tag @manga.picture, class: "manga_picture" %>
+	<%= link_to (image_tag @manga.picture, class: "manga_picture"), @manga.picture %>
 </div>
 
 <div class="author_name">
@@ -25,4 +25,10 @@
 </div>
 <br/>
 
-<%= render "mangas/fiche/#{@manga.title.split(" ").first.downcase}" %>
+<% if @manga.title.split(" ").first.downcase == "super" %>
+	<%= render "mangas/fiche/super_monzetsu" %>
+<% elsif @manga.title.split(" ").first.downcase == "nee," %>
+	<%= render "mangas/fiche/nee" %>
+<% else %>
+	<%= render "mangas/fiche/#{@manga.title.split(" ").first.downcase}" %>
+<% end %>
