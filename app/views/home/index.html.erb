@@ -12,9 +12,10 @@
 	<p>
 		Publié il y a <%= time_ago_in_words post.created_at %> par <b><%= post.user.try(:username) %></b>, dernière mise à jour le <%= l(post.updated_at) %>
 	</p>
-	<p style="text-align: justify;">
-		<%= truncate_html(post.content.html_safe, length: 1000) %><br />
-	</p>
+	<hr class="bs-docs-separator">
+	<div class="articles" style="text-align: justify;">
+		<%= truncate_html(post.content.html_safe, length: 1000) %>
+	</div><br />
 	<% if logged_in? && current_user.admin? %>
 	<div id="admin-post">
 		<%= link_to t('Edit'), edit_post_path(post) %> |

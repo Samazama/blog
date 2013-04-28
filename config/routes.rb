@@ -5,7 +5,10 @@ SamazamaProject::Application.routes.draw do
     resources :comments
   end
 
-  resources :mangas
+  resources :mangas do
+    resources :manga_comments
+  end
+
   resources :admin, only: [:index, :new, :create, :destroy]
   match 'logout' => 'admin#destroy', :as => :logout
   match 'team' => 'team#index'

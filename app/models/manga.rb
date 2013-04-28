@@ -19,7 +19,7 @@ class Manga < ActiveRecord::Base
 
   belongs_to  :author
   belongs_to  :genre
-  has_many    :volumes
+  has_many    :manga_comments
 
   def ecchi? ;  genre.name == "ecchi" end
   def hentai? ; genre.name == "hentai" end

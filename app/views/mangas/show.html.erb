@@ -32,3 +32,23 @@
 <% else %>
 	<%= render "mangas/fiche/#{@manga.title.split(" ").first.downcase}" %>
 <% end %>
+
+<h4>Commentaires :</h4>
+
+<%= "Il n'y a actuellement aucun commentaire." if @manga.manga_comments.empty? %>
+<% @manga.manga_comments.each do |comment| %>
+	<p><%= comment.content %></p>
+	<p>
+		Posté il y a <%= time_ago_in_words comment.created_at %> |
+		<%= link_to 'Effacer le commentaire', [@manga, comment], method: :delete,
+								confirm: "Êtes-vous sûr de vouloir effacer le commentaire ?" %>
+	</p>
+	<hr class="bs-docs-separator">
+<% end %>
+
+<%= simple_form_for [@manga, @manga.manga_comments.build], :html => { :class => 'form-horizontal' } do |f| %>
+	<p><%= f.input :content %></p>
+	<div class="controls">
+		<p><%= f.submit "Poster le commentaire", class: 'btn btn-primary' %></p>
+	</div>
+<% end %>

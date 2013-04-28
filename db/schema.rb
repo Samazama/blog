@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421133721) do
+ActiveRecord::Schema.define(:version => 20130428160515) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(:version => 20130421133721) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "url"
+  end
+
+  create_table "manga_comments", :force => true do |t|
+    t.integer  "manga_id"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "mangas", :force => true do |t|
@@ -73,12 +81,5 @@ ActiveRecord::Schema.define(:version => 20130421133721) do
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
-
-  create_table "volumes", :force => true do |t|
-    t.integer  "manga_id"
-    t.string   "picture"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
 end
