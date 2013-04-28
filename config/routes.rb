@@ -8,4 +8,5 @@ SamazamaProject::Application.routes.draw do
   resources :mangas
   resources :admin, only: [:index, :new, :create, :destroy]
   match 'logout' => 'admin#destroy', :as => :logout
+  match 'team' => 'team#index'
 end
